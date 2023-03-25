@@ -5,24 +5,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <title>Homework3</title>
 </head>
 
 <body>
     <input type="text" id="item">
     <button id="add">add</button>
+    <button id="remove">remove</button>
+    <button id="show">show</button>
+
     <ol></ol>
     <script>
         function addItem() {
-            e = $("#item").val();
-            $("ol").append("<li>" + e + "</li>");
+            var e = $("#item").val();
+            $("ol").append("<li>" + e + " <button class='remove'>remove</button></li>");
             console.log("element added");
         }
-        $(document).ready(
-            $("#add").on("click"
-                , addItem)
-        );
+
+        function removeItem() {
+            $(this).parent().remove();
+            console.log("element removed");
+        }
+
+        $(document).ready(function () {
+            $("#add").on("click", addItem);
+            $("ol").on("click", ".remove", removeItem);
+        });
+
+
     </script>
+
+
 
 </body>
 
