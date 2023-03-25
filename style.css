@@ -1,7 +1,8 @@
-body {}
+body {
+    background-color: #4c82af;
+}
 
 #input {
-
     background-color: white;
     padding-top: 20px;
     text-align: center;
