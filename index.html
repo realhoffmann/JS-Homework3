@@ -24,10 +24,13 @@
             $("ol").append("<li>" + e + " <button class='remove'>remove</button></li>");
             console.log("element added");
             $("#item").val("");
+            $("li:last-child").hide().slideDown(500);
         }
 
         function removeItem() {
-            $(this).parent().remove();
+            $(this).parent().fadeOut(1000, function () {
+                $(this).remove();
+            });
             console.log("element removed");
         }
 
@@ -35,14 +38,14 @@
             $("#add").on("click", addItem);
             $("ol").on("click", ".remove", removeItem);
             $("ol").sortable();
-        });
 
-        $("#hide").on("click", function () {
-            $("ol").hide();
-        });
+            $("#hide").on("click", function () {
+                $("ol").fadeOut(500);
+            });
 
-        $("#show").on("click", function () {
-            $("ol").show();
+            $("#show").on("click", function () {
+                $("ol").fadeIn(500);
+            });
         });
     </script>
 
