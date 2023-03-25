@@ -7,47 +7,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="style.css">
+
     <title>Homework3</title>
 </head>
 
 <body>
-    <input type="text" id="item">
-    <button id="add">add</button>
-    <button id="hide">hide list</button>
-    <button id="show">show list</button>
+    <div id="input">
+        <input type="text" id="item">
+        <button id="add">add</button>
+        <button id="hide">hide list</button>
+        <button id="show">show list</button>
+    </div>
 
-    <ol></ol>
-    <script>
-        function addItem() {
-            var e = $("#item").val();
-            $("ol").append("<li>" + e + " <button class='remove'>remove</button></li>");
-            console.log("element added");
-            $("#item").val("");
-            $("li:last-child").hide().slideDown(500);
-        }
+    <div id="list">
+        <ol></ol>
+        <script>
+            function addItem() {
+                var e = $("#item").val();
+                $("ol").append("<li>" + e + " <button class='remove'>remove</button></li>");
+                console.log("element added");
+                $("#item").val("");
+                $("li:last-child").hide().slideDown(500);
+            }
 
-        function removeItem() {
-            $(this).parent().fadeOut(1000, function () {
-                $(this).remove();
+            function removeItem() {
+                $(this).parent().fadeOut(1000, function () {
+                    $(this).remove();
+                });
+                console.log("element removed");
+            }
+
+            $(document).ready(function () {
+                $("#add").on("click", addItem);
+                $("ol").on("click", ".remove", removeItem);
+                $("ol").sortable();
+
+                $("#hide").on("click", function () {
+                    $("ol").fadeOut(500);
+                });
+
+                $("#show").on("click", function () {
+                    $("ol").fadeIn(500);
+                });
             });
-            console.log("element removed");
-        }
-
-        $(document).ready(function () {
-            $("#add").on("click", addItem);
-            $("ol").on("click", ".remove", removeItem);
-            $("ol").sortable();
-
-            $("#hide").on("click", function () {
-                $("ol").fadeOut(500);
-            });
-
-            $("#show").on("click", function () {
-                $("ol").fadeIn(500);
-            });
-        });
-    </script>
+        </script>
+    </div>
 
 
 
